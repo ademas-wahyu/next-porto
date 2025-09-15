@@ -36,12 +36,19 @@ const fade = (dir: 'up' | 'down' | 'left' | 'right' = 'up', delay = 0) => {
   } as const;
 };
 
+// Komponen About: Menampilkan perkenalan, foto, dan tumpukan teknologi.
 export default function About() {
   return (
-    <section id="about" className="relative overflow-hidden py-24 lg:py-32 bg-gradient-to-b from-white to-slate-50">
-      {/* decorative background */}
+    // Section utama dengan ID untuk navigasi dan styling dasar.
+    // Mendukung mode gelap dengan mengubah warna latar belakang.
+    <section
+      id="about"
+      className="relative overflow-hidden py-24 lg:py-32 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-gray-800"
+    >
+      {/* Komponen untuk gelembung dekoratif di latar belakang. */}
       <BackgroundBubbles />
 
+      {/* Kontainer utama untuk konten dengan padding dan lebar maksimal. */}
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <motion.div
           className="grid grid-cols-1 items-center gap-12 md:grid-cols-2"
@@ -50,7 +57,7 @@ export default function About() {
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
         >
-          {/* Left: Image */}
+          {/* Kolom Kiri: Gambar Profil */}
           <motion.div
             className="flex justify-center"
             variants={fade('right')}
@@ -58,10 +65,11 @@ export default function About() {
             transition={{ type: 'spring', stiffness: 120, damping: 14 }}
           >
             <div className="relative h-80 w-80 md:h-[22rem] md:w-[22rem]">
-              {/* gradient ring */}
+              {/* Cincin gradien sebagai hiasan di belakang gambar. */}
               <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-purple-400/60 via-fuchsia-400/50 to-blue-400/60 blur-lg" aria-hidden />
 
-              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/20 bg-white shadow-2xl shadow-purple-500/10">
+              {/* Kontainer gambar dengan styling, border, dan shadow. */}
+              <div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/20 bg-white dark:bg-slate-800 shadow-2xl shadow-purple-500/10">
                 <Image
                   src="/ade-mas-wahyu-web-developer.png"
                   alt="Foto Ade Mas Wahyu — Web Developer"
@@ -72,43 +80,48 @@ export default function About() {
                 />
               </div>
 
-              {/* floating highlight */}
+              {/* Sorotan melayang sebagai efek visual tambahan. */}
               <div className="pointer-events-none absolute -left-10 -top-10 h-28 w-28 rounded-full bg-purple-400/30 blur-3xl" />
               <div className="pointer-events-none absolute -bottom-10 -right-8 h-24 w-24 rounded-full bg-blue-400/30 blur-3xl" />
             </div>
           </motion.div>
 
-          {/* Right: Text */}
+          {/* Kolom Kanan: Teks Deskripsi */}
           <motion.div variants={fade('left', 0.05)}>
-            <motion.h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 lg:text-4xl" variants={fade('up', 0.05)}>
+            {/* Judul utama, responsif terhadap mode gelap. */}
+            <motion.h2 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-gray-50 lg:text-4xl" variants={fade('up', 0.05)}>
               Perpaduan Antara Kode dan Kreativitas
             </motion.h2>
 
-            <motion.p className="mb-6 text-lg leading-relaxed text-slate-600" variants={fade('up', 0.1)}>
+            {/* Paragraf deskripsi, responsif terhadap mode gelap. */}
+            <motion.p className="mb-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300" variants={fade('up', 0.1)}>
               Halo! Saya Ade Mas Wahyu, seorang web developer dengan gairah untuk menciptakan pengalaman digital yang bersih, fungsional, dan ramah pengguna. Bagi saya, coding bukan hanya tentang menulis baris perintah, tetapi tentang memecahkan masalah dan mengubah ide menjadi kenyataan digital yang berdampak.
             </motion.p>
 
-            <motion.p className="mb-8 text-lg leading-relaxed text-slate-600" variants={fade('up', 0.15)}>
+            <motion.p className="mb-8 text-lg leading-relaxed text-slate-600 dark:text-slate-300" variants={fade('up', 0.15)}>
               Saya membantu bisnis dan individu untuk membangun kehadiran online yang kuat, mulai dari landing page yang menarik hingga aplikasi web yang kompleks.
             </motion.p>
 
-            <motion.h3 className="mb-4 text-2xl font-semibold text-slate-800" variants={fade('up', 0.2)}>
+            {/* Sub-judul untuk daftar teknologi. */}
+            <motion.h3 className="mb-4 text-2xl font-semibold text-slate-800 dark:text-gray-50" variants={fade('up', 0.2)}>
               Teknologi yang Saya Gunakan:
             </motion.h3>
 
+            {/* Daftar teknologi yang digunakan. */}
             <motion.ul
               className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-2"
               variants={container}
             >
               {techStack.map((tech, i) => (
+                // Item dalam daftar dengan styling untuk mode terang dan gelap.
                 <motion.li
                   key={tech}
-                  className="group flex items-center rounded-xl border border-slate-200/70 bg-white/70 px-3 py-2 shadow-sm ring-1 ring-black/0 transition hover:border-purple-300/60 hover:shadow-md hover:ring-black/5"
+                  className="group flex items-center rounded-xl border border-slate-200/70 dark:border-slate-700 bg-white/70 dark:bg-slate-800/50 px-3 py-2 shadow-sm ring-1 ring-black/0 transition hover:border-purple-300/60 hover:shadow-md hover:ring-black/5"
                   variants={fade('up', i * 0.03)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="mr-2 h-5 w-5 text-purple-600 transition group-hover:scale-110"
+                    className="mr-2 h-5 w-5 text-purple-600 dark:text-purple-400 transition group-hover:scale-110"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                     aria-hidden
@@ -119,7 +132,8 @@ export default function About() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-slate-700">{tech}</span>
+                  {/* Teks teknologi, responsif terhadap mode gelap. */}
+                  <span className="text-slate-700 dark:text-slate-300">{tech}</span>
                 </motion.li>
               ))}
             </motion.ul>
@@ -127,14 +141,7 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* local keyframes for subtle float */}
-      <style>{`
-        @keyframes floaty { 0% { transform: translateY(0) } 50% { transform: translateY(-8px) } 100% { transform: translateY(0) } }
-        .floaty { animation: floaty 8s ease-in-out infinite; }
-        @media (prefers-reduced-motion: reduce) {
-          .floaty { animation: none !important; }
-        }
-      `}</style>
+      {/* Animasi floaty untuk gelembung latar belakang sudah didefinisikan di globals.css */}
     </section>
   );
 }

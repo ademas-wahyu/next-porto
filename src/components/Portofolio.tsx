@@ -2,6 +2,7 @@
 "use client"
 
 import React from 'react'
+import Image from 'next/image'
 
 const portfolioItems = [
   {
@@ -48,87 +49,75 @@ const portfolioItems = [
   },
 ]
 
+// Komponen Portfolio: Menampilkan galeri proyek dengan fungsionalitas filter.
 const Portfolio = () => {
+  // State untuk melacak filter kategori yang aktif.
   const [filter, setFilter] = React.useState('Semua')
 
+  // Logika untuk memfilter item portofolio berdasarkan state filter.
   const filteredItems =
     filter === 'Semua'
       ? portfolioItems
       : portfolioItems.filter((item) => item.category === filter)
 
+  // Daftar kategori filter untuk dirender secara dinamis.
+  const filters = ['Semua', 'Desain Web', 'Aplikasi Seluler', 'Branding']
+
   return (
-    <section id="portofolio" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    // Section utama dengan ID dan styling yang mendukung mode gelap.
+    <section id="portofolio" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
       <div className="max-w-7xl mx-auto">
+        {/* Judul dan deskripsi section. */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
             Portofolio
           </h1>
-          <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-4 text-lg text-gray-600 dark:text-slate-300 max-w-3xl mx-auto">
             Jelajahi pilihan proyek saya. Masing-masing menunjukkan dedikasi
             saya untuk menciptakan pengalaman pengguna yang intuitif, indah, dan
             efektif.
           </p>
         </div>
+
+        {/* Tombol filter yang dirender secara dinamis. */}
         <div className="flex justify-center flex-wrap gap-4 mb-10">
-          <button
-            onClick={() => setFilter('Semua')}
-            className={`px-5 py-2 text-sm font-semibold rounded-full transition-colors ${
-              filter === 'Semua'
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-100 hover:text-gray-700'
-            }`}
-          >
-            Semua
-          </button>
-          <button
-            onClick={() => setFilter('Desain Web')}
-            className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${
-              filter === 'Desain Web'
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-100 hover:text-gray-700'
-            }`}
-          >
-            Desain Web
-          </button>
-          <button
-            onClick={() => setFilter('Aplikasi Seluler')}
-            className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${
-              filter === 'Aplikasi Seluler'
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-100 hover:text-gray-700'
-            }`}
-          >
-            Aplikasi Seluler
-          </button>
-          <button
-            onClick={() => setFilter('Branding')}
-            className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${
-              filter === 'Branding'
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-500 border border-gray-200 hover:bg-gray-100 hover:text-gray-700'
-            }`}
-          >
-            Branding
-          </button>
+          {filters.map((filterName) => (
+            <button
+              key={filterName}
+              onClick={() => setFilter(filterName)}
+              className={`px-5 py-2 text-sm font-semibold rounded-full transition-colors ${
+                filter === filterName
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white dark:bg-slate-800 text-gray-500 dark:text-gray-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-gray-700 dark:hover:text-gray-200'
+              }`}
+            >
+              {filterName}
+            </button>
+          ))}
         </div>
+
+        {/* Grid untuk menampilkan item-item portofolio. */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((item, index) => (
+            // Kartu individual untuk setiap item portofolio.
             <div
               key={index}
-              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group"
+              className="bg-white dark:bg-slate-800/80 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group ring-1 ring-black/5 dark:ring-white/10"
             >
-              <div className="overflow-hidden">
-                <img
-                  alt="Project Thumbnail"
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              <div className="relative h-48 w-full overflow-hidden">
+                <Image
+                  alt={item.title}
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                   src={item.imageUrl}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-gray-900">
+                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-gray-50">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{item.description}</p>
+                <p className="text-gray-600 dark:text-slate-300 text-sm">{item.description}</p>
               </div>
             </div>
           ))}

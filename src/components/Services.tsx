@@ -62,16 +62,19 @@ const card: Variants = {
   },
 };
 
+// Komponen Services: Menampilkan daftar layanan yang ditawarkan dalam bentuk kartu.
 const Services = () => {
   return (
-    <section id="services" className="relative py-20 lg:py-32 bg-slate-50 overflow-hidden">
-      {/* dekorasi halus */}
+    // Section utama dengan ID, padding, dan latar belakang yang mendukung mode gelap.
+    <section id="services" className="relative py-20 lg:py-32 bg-slate-50 dark:bg-gray-800/50 overflow-hidden">
+      {/* Lapisan dekoratif di latar belakang untuk efek visual. */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 [background:radial-gradient(60%_40%_at_15%_20%,rgba(168,85,247,.07),transparent_60%),radial-gradient(50%_35%_at_85%_75%,rgba(59,130,246,.08),transparent_60%)]" />
       </div>
 
+      {/* Kontainer utama untuk konten. */}
       <div className="container mx-auto px-4">
-        {/* Judul Section */}
+        {/* Judul dan sub-judul section dengan animasi. */}
         <motion.div
           className="text-center mb-12"
           variants={container}
@@ -80,20 +83,20 @@ const Services = () => {
           viewport={{ once: true, amount: 0.35 }}
         >
           <motion.h2
-            className="text-3xl lg:text-4xl font-bold text-gray-900"
+            className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-50"
             variants={fadeUp(0)}
           >
             Layanan yang Saya Tawarkan
           </motion.h2>
           <motion.p
-            className="text-lg text-gray-600 mt-4 max-w-2xl mx-auto"
+            className="text-lg text-gray-600 dark:text-slate-300 mt-4 max-w-2xl mx-auto"
             variants={fadeUp(0.05)}
           >
             Saya menyediakan solusi digital untuk membantu bisnis Anda tumbuh dan berhasil di dunia online.
           </motion.p>
         </motion.div>
 
-        {/* Grid untuk Kartu Layanan */}
+        {/* Grid untuk menampilkan kartu-kartu layanan. */}
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={container}
@@ -102,20 +105,23 @@ const Services = () => {
           viewport={{ once: true, amount: 0.25 }}
         >
           {servicesData.map((service) => (
+            // Kartu individual untuk setiap layanan dengan animasi.
             <motion.article
               key={service.title}
               variants={card}
               whileHover={{ y: -8, scale: 1.02 }}
               whileTap={{ scale: 0.99 }}
               transition={{ type: 'spring', stiffness: 240, damping: 18 }}
-              className="group relative bg-white p-8 rounded-2xl shadow-lg ring-1 ring-black/5 hover:shadow-xl"
+              className="group relative bg-white dark:bg-slate-800/80 p-8 rounded-2xl shadow-lg ring-1 ring-black/5 dark:ring-white/10 hover:shadow-xl dark:hover:shadow-purple-500/10"
             >
-              {/* gradient ring halus saat hover */}
+              {/* Efek cincin gradien saat kartu di-hover. */}
               <div className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition group-hover:opacity-100 bg-[conic-gradient(at_0%_0%,theme(colors.purple.300/.35),theme(colors.blue.300/.35),transparent_30%)] blur"></div>
 
+              {/* Konten di dalam kartu. */}
               <div className="relative">
+                {/* Ikon layanan dengan animasi. */}
                 <motion.div
-                  className="text-blue-600 mb-4"
+                  className="text-blue-600 dark:text-blue-400 mb-4"
                   initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -124,10 +130,12 @@ const Services = () => {
                   {service.icon}
                 </motion.div>
 
-                <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+                {/* Judul layanan. */}
+                <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-50 mb-3">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                {/* Deskripsi layanan. */}
+                <p className="text-gray-600 dark:text-slate-300 leading-relaxed">
                   {service.description}
                 </p>
               </div>
