@@ -27,13 +27,15 @@ const fade = (
   };
 };
 
+// Komponen Hero: Bagian utama yang menyambut pengunjung di bagian atas halaman.
 export default function Hero() {
   return (
+    // Section utama dengan latar belakang gradien dan styling untuk penataan konten.
     <section className="relative flex flex-col items-center justify-center min-h-screen text-center overflow-hidden bg-gradient-to-bl from-purple-400 to-blue-900">
-      {/* Layer bubble animasi */}
+      {/* Komponen untuk menampilkan gelembung animasi di latar belakang. */}
       <BokehBubbles />
 
-      {/* Konten utama */}
+      {/* Konten utama: judul, sub-judul, dan tombol ajakan bertindak (CTA). */}
       <motion.div
         className="relative z-10 px-6 flex flex-col items-center justify-center"
         variants={container}
@@ -41,6 +43,7 @@ export default function Hero() {
         whileInView="show"
         viewport={{ once: true, amount: 0.35 }}
       >
+        {/* Judul utama dengan animasi fade-up. */}
         <motion.h1
           className="text-4xl md:text-6xl font-bold text-gray-50 mb-4"
           variants={fade('up', 0.0)}
@@ -48,45 +51,30 @@ export default function Hero() {
           Mengubah Ide Menjadi Website Modern
         </motion.h1>
 
+        {/* Sub-judul atau deskripsi singkat dengan animasi fade-up. */}
         <motion.p
           className="text-lg md:text-xl text-gray-50/95 max-w-2xl mb-8 text-center"
           variants={fade('up', 0.05)}
         >
-          Saya Ade Mas Wahyu, seorang Web Developer yang siap membantu bisnis anda
+          Saya Ade Mas Wahyu, seorang Web Developer yang siap membantu bisnis Anda
           untuk go digital.
         </motion.p>
 
+        {/* Tombol CTA (Call to Action) yang mengarah ke portofolio. */}
         <motion.a
           href="#portofolio"
-          className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+          className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
           variants={fade('up', 0.1)}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
           transition={{ type: 'spring', stiffness: 240, damping: 18 }}
         >
-          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent">
+          {/* Teks di dalam tombol CTA dengan styling untuk efek hover. */}
+          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Lihat Portofolio
           </span>
         </motion.a>
       </motion.div>
-
-      {/* Keyframes untuk bubble float & spin */}
-      <style>{`
-        :root { --float-y: 64px; }
-        @keyframes floaty {
-          0%   { transform: translate3d(0, 0, 0) scale(1); opacity: .9; }
-          50%  { transform: translate3d(20px, calc(var(--float-y) * -1), 0) scale(1.06); opacity: 1; }
-          100% { transform: translate3d(0, 0, 0) scale(1); opacity: .9; }
-        }
-        @keyframes drift { 0% { rotate: 0deg } 100% { rotate: 360deg } }
-        .bubble { will-change: transform, opacity, filter; animation: floaty 18s ease-in-out infinite; }
-        .bubble--spin { animation: floaty 22s ease-in-out infinite, drift 120s linear infinite; }
-        .bubble:nth-child(odd) { animation-duration: 20s; }
-        .bubble:nth-child(3n) { animation-delay: 2.5s; }
-        @media (prefers-reduced-motion: reduce) {
-          .bubble, .bubble--spin { animation: none !important; }
-        }
-      `}</style>
     </section>
   );
 }

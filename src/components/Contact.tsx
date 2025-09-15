@@ -3,33 +3,38 @@
 
 import React from 'react'
 
+// Komponen Contact: Menampilkan informasi kontak dan formulir kontak.
 const Contact = () => {
   return (
+    // Section utama dengan ID dan styling yang mendukung mode gelap.
     <section
       id="contact"
-      className="px-6 md:px-10 lg:px-20 py-12 lg:py-24 bg-white"
+      className="px-6 md:px-10 lg:px-20 py-12 lg:py-24 bg-white dark:bg-slate-900"
     >
+      {/* Kontainer grid untuk membagi layout menjadi dua kolom pada layar besar. */}
       <div className="mx-auto max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        {/* Kolom Kiri: Informasi Kontak */}
         <div className="space-y-6">
           <div className="space-y-2">
-            <h1 className="text-4xl font-bold tracking-tight">Hubungi Saya</h1>
-            <p className="text-slate-600">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Hubungi Saya</h1>
+            <p className="text-slate-600 dark:text-slate-300">
               Saya selalu terbuka untuk mendiskusikan proyek baru, ide-ide
               kreatif, atau peluang untuk menjadi bagian dari visi Anda. Jangan
               ragu untuk menghubungi, dan saya akan membalas sesegera mungkin.
             </p>
           </div>
+          {/* Daftar tautan kontak (Email, LinkedIn, GitHub). */}
           <div className="space-y-4 pt-4">
             <a
               className="flex items-center gap-4 group"
               href="mailto:ademaswahyubusiness@gmail.com"
             >
-              <div className="flex items-center justify-center rounded-md bg-slate-100 shrink-0 size-12 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+              <div className="flex items-center justify-center rounded-md bg-slate-100 dark:bg-slate-800 shrink-0 size-12 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                 <span className="material-symbols-outlined"> mail </span>
               </div>
               <div className="flex flex-col">
-                <p className="font-medium">Email</p>
-                <p className="text-slate-500 text-sm group-hover:text-blue-600 transition-colors">
+                <p className="font-medium text-gray-900 dark:text-gray-50">Email</p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   ademaswahyubusiness@gmail.com
                 </p>
               </div>
@@ -40,7 +45,7 @@ const Contact = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <div className="flex items-center justify-center rounded-md bg-slate-100 shrink-0 size-12 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+              <div className="flex items-center justify-center rounded-md bg-slate-100 dark:bg-slate-800 shrink-0 size-12 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                 <svg
                   className="h-6 w-6"
                   fill="currentColor"
@@ -51,8 +56,8 @@ const Contact = () => {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <p className="font-medium">LinkedIn</p>
-                <p className="text-slate-500 text-sm group-hover:text-blue-600 transition-colors">
+                <p className="font-medium text-gray-900 dark:text-gray-50">LinkedIn</p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   linkedin.com/in/nama-anda
                 </p>
               </div>
@@ -63,7 +68,7 @@ const Contact = () => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <div className="flex items-center justify-center rounded-md bg-slate-100 shrink-0 size-12 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+              <div className="flex items-center justify-center rounded-md bg-slate-100 dark:bg-slate-800 shrink-0 size-12 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                 <svg
                   className="h-6 w-6"
                   fill="currentColor"
@@ -74,37 +79,39 @@ const Contact = () => {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <p className="font-medium">GitHub</p>
-                <p className="text-slate-500 text-sm group-hover:text-blue-600 transition-colors">
+                <p className="font-medium text-gray-900 dark:text-gray-50">GitHub</p>
+                <p className="text-slate-500 dark:text-slate-400 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   github.com/ademas-wahyu
                 </p>
               </div>
             </a>
           </div>
         </div>
-        <form className="space-y-6 bg-slate-50 p-8 rounded-lg shadow-sm">
+        {/* Kolom Kanan: Formulir Kontak */}
+        <form className="space-y-6 bg-slate-50 dark:bg-slate-800/80 p-8 rounded-lg shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+          {/* Setiap field dalam form (Nama, Email, Subjek, Pesan). */}
           <div className="space-y-2">
             <label
-              className="text-sm font-medium leading-none"
+              className="text-sm font-medium leading-none text-gray-900 dark:text-gray-50"
               htmlFor="name"
             >
               Nama
             </label>
             <input
-              className="form-input flex w-full rounded-md text-slate-900 border border-slate-300 bg-white h-11 px-4 text-sm placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="form-input flex w-full rounded-md text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 h-11 px-4 text-sm placeholder:text-slate-500 dark:placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
               id="name"
               placeholder="Masukkan nama Anda"
             />
           </div>
           <div className="space-y-2">
             <label
-              className="text-sm font-medium leading-none"
+              className="text-sm font-medium leading-none text-gray-900 dark:text-gray-50"
               htmlFor="email"
             >
               Email
             </label>
             <input
-              className="form-input flex w-full rounded-md text-slate-900 border border-slate-300 bg-white h-11 px-4 text-sm placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="form-input flex w-full rounded-md text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 h-11 px-4 text-sm placeholder:text-slate-500 dark:placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
               id="email"
               placeholder="Masukkan email Anda"
               type="email"
@@ -112,30 +119,31 @@ const Contact = () => {
           </div>
           <div className="space-y-2">
             <label
-              className="text-sm font-medium leading-none"
+              className="text-sm font-medium leading-none text-gray-900 dark:text-gray-50"
               htmlFor="subject"
             >
               Subjek
             </label>
             <input
-              className="form-input flex w-full rounded-md text-slate-900 border border-slate-300 bg-white h-11 px-4 text-sm placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="form-input flex w-full rounded-md text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 h-11 px-4 text-sm placeholder:text-slate-500 dark:placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
               id="subject"
               placeholder="Masukkan subjek pesan"
             />
           </div>
           <div className="space-y-2">
             <label
-              className="text-sm font-medium leading-none"
+              className="text-sm font-medium leading-none text-gray-900 dark:text-gray-50"
               htmlFor="message"
             >
               Pesan
             </label>
             <textarea
-              className="form-textarea flex w-full rounded-md text-slate-900 border border-slate-300 bg-white min-h-36 p-4 text-sm placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+              className="form-textarea flex w-full rounded-md text-slate-900 dark:text-slate-100 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 min-h-36 p-4 text-sm placeholder:text-slate-500 dark:placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
               id="message"
               placeholder="Masukkan pesan Anda"
             ></textarea>
           </div>
+          {/* Tombol kirim formulir. */}
           <button
             className="inline-flex w-full items-center justify-center rounded-md h-11 px-6 bg-blue-600 text-slate-50 text-sm font-bold hover:bg-blue-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             type="submit"
