@@ -41,7 +41,7 @@ const Contact = () => {
             </a>
             <a
               className="flex items-center gap-4 group"
-              href="https://www.linkedin.com/in/nama-anda"
+              href="https://id.linkedin.com/in/ade-mas-wahyu-43315a286"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -58,7 +58,7 @@ const Contact = () => {
               <div className="flex flex-col">
                 <p className="font-medium text-gray-900 dark:text-gray-50">LinkedIn</p>
                 <p className="text-slate-500 dark:text-slate-400 text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  linkedin.com/in/nama-anda
+                  linkedin.com/in/ade-mas-wahyu
                 </p>
               </div>
             </a>
