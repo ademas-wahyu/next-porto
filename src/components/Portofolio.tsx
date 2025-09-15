@@ -3,6 +3,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { motion, type Variants } from 'framer-motion'
 
 const portfolioItems = [
   {
@@ -49,6 +50,33 @@ const portfolioItems = [
   },
 ]
 
+const container: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.15 },
+  },
+};
+
+const fadeUp = (delay = 0): Variants => ({
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  },
+});
+
+const card: Variants = {
+  hidden: { opacity: 0, y: 28, scale: 0.98 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 // Komponen Portfolio: Menampilkan galeri proyek dengan fungsionalitas filter.
 const Portfolio = () => {
   // State untuk melacak filter kategori yang aktif.
@@ -65,24 +93,42 @@ const Portfolio = () => {
 
   return (
     // Section utama dengan ID dan styling yang mendukung mode gelap.
-    <section id="portofolio" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
+    <section id="portofolio" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Judul dan deskripsi section. */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
+        <motion.div
+          className="text-center mb-12"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.h1
+            className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-50"
+            variants={fadeUp(0)}
+          >
             Portofolio
-          </h1>
-          <p className="mt-4 text-lg text-gray-600 dark:text-slate-300 max-w-3xl mx-auto">
+          </motion.h1>
+          <motion.p
+            className="mt-4 text-lg text-gray-600 dark:text-slate-300 max-w-3xl mx-auto"
+            variants={fadeUp(0.05)}
+          >
             Jelajahi pilihan proyek saya. Masing-masing menunjukkan dedikasi
             saya untuk menciptakan pengalaman pengguna yang intuitif, indah, dan
             efektif.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Tombol filter yang dirender secara dinamis. */}
-        <div className="flex justify-center flex-wrap gap-4 mb-10">
-          {filters.map((filterName) => (
-            <button
+        <motion.div
+          className="flex justify-center flex-wrap gap-4 mb-10"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {filters.map((filterName, i) => (
+            <motion.button
               key={filterName}
               onClick={() => setFilter(filterName)}
               className={`px-5 py-2 text-sm font-semibold rounded-full transition-colors ${
@@ -90,19 +136,32 @@ const Portfolio = () => {
                   ? 'bg-blue-600 text-white'
                   : 'bg-white dark:bg-slate-800 text-gray-500 dark:text-gray-300 border border-gray-200 dark:border-slate-700 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-gray-700 dark:hover:text-gray-200'
               }`}
+              variants={fadeUp(i * 0.05)}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
               {filterName}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Grid untuk menampilkan item-item portofolio. */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {filteredItems.map((item, index) => (
             // Kartu individual untuk setiap item portofolio.
-            <div
+            <motion.div
               key={index}
               className="bg-white dark:bg-slate-800/80 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 group ring-1 ring-black/5 dark:ring-white/10"
+              variants={card}
+              whileHover={{ y: -6, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
             >
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
@@ -119,9 +178,9 @@ const Portfolio = () => {
                 </h3>
                 <p className="text-gray-600 dark:text-slate-300 text-sm">{item.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

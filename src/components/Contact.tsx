@@ -2,6 +2,23 @@
 "use client"
 
 import React from 'react'
+import { motion, type Variants } from 'framer-motion'
+
+const fade = (
+  dir: 'left' | 'right',
+  delay = 0
+): Variants => {
+  const distance = 40;
+  const from = dir === 'left' ? distance : -distance;
+  return {
+    hidden: { opacity: 0, x: from },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+};
 
 // Komponen Contact: Menampilkan informasi kontak dan formulir kontak.
 const Contact = () => {
@@ -9,12 +26,18 @@ const Contact = () => {
     // Section utama dengan ID dan styling yang mendukung mode gelap.
     <section
       id="contact"
-      className="px-6 md:px-10 lg:px-20 py-12 lg:py-24 bg-white dark:bg-slate-900"
+      className="px-6 md:px-10 lg:px-20 py-12 lg:py-24 bg-white dark:bg-slate-900 overflow-hidden"
     >
       {/* Kontainer grid untuk membagi layout menjadi dua kolom pada layar besar. */}
       <div className="mx-auto max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         {/* Kolom Kiri: Informasi Kontak */}
-        <div className="space-y-6">
+        <motion.div
+          className="space-y-6"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={fade('right', 0)}
+        >
           <div className="space-y-2">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-50">Hubungi Saya</h1>
             <p className="text-slate-600 dark:text-slate-300">
@@ -86,9 +109,15 @@ const Contact = () => {
               </div>
             </a>
           </div>
-        </div>
+        </motion.div>
         {/* Kolom Kanan: Formulir Kontak */}
-        <form className="space-y-6 bg-slate-50 dark:bg-slate-800/80 p-8 rounded-lg shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+        <motion.form
+          className="space-y-6 bg-slate-50 dark:bg-slate-800/80 p-8 rounded-lg shadow-sm ring-1 ring-black/5 dark:ring-white/10"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={fade('left', 0.1)}
+        >
           {/* Setiap field dalam form (Nama, Email, Subjek, Pesan). */}
           <div className="space-y-2">
             <label
@@ -150,7 +179,7 @@ const Contact = () => {
           >
             Kirim Pesan
           </button>
-        </form>
+        </motion.form>
       </div>
     </section>
   )
